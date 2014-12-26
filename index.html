@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+    <head>
+	<center>
+		<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+		<font color="#CC33FF"><b>WELCOME TO TRANZBOX</b></font><br>
+		<font color="#CC33FF"><b>(Blobstore Serving Url in Differnt Sizes Link)</b></font>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Blob_Serving_Url_Differnt_Sizes</title>
+    </center>
+		<script>
+	 <!-- Sending HTTP Post Request Ajax to generate Upload Url-->
+			function submitform()
+			{
+				 var client = new XMLHttpRequest();
+				client.open("GET", "/urlcreate", false);
+				client.send(null);
+				var serverResponse = client.responseText;
+				alert(serverResponse);
+				
+				return serverResponse;
+				}
+		</script>
+		
+	</head>
+    <body><br><br><br>
+        <form name="myform"  method="POST" action="" onsubmit="this.action=submitform();" enctype="multipart/form-data" >
+            
+			Select File    :   <input id="donaldduck" type="file" name="file"><br><br>
+			<input name="Upload" type="submit" value="Upload"  />
+    
+	</body>
+</html>
+{% endautoescape %}
