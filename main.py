@@ -46,12 +46,15 @@ class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
 class ServeHandler(webapp2.RequestHandler):
   def get(self,resource):
 	self.response.out.write("<html><head><script>function goBack() {window.history.back()} </script></head><body>")
-	self.response.out.write("<a href='%s'>Origonal Size</a> <br><a href='%s'>Object in 150 Size(for Images)</a><br> <a href='%s'>Object in 80 Size(for Images)</a><br><br><button onclick='goBack()'>Upload Another File</button> " % (images.get_serving_url(resource),
+	#For showing images followed by a Link
+	# self.response.out.write("<a href='%s'>Origonal Size</a> <br><a href='%s'>Object in 150 Size(for Images)</a><br> <a href='%s'>Object in 80 Size(for Images)</a><br><br><button onclick='goBack()'>Upload Another File</button> " % (images.get_serving_url(resource),
+	# images.get_serving_url(resource, 150),
+	# images.get_serving_url(resource, 80)))
+	
+	#For showing images directly use the code below
+	self.response.out.write("<b>Origonal Size   :   </b>  <img src='%s' alt='Origonal Size'> <br><b>Object in 150 Size(for Images)   :   </b>  <img src='%s' alt='Object in 150 Size(for Images)'><br><br> <b>Object in 80 Size(for Images)   :   </b>  <img src='%s' alt='Object in 80 Size(for Images)'><br><br><button onclick='goBack()'>Upload Another File</button> " % (images.get_serving_url(resource),
 	images.get_serving_url(resource, 150),
 	images.get_serving_url(resource, 80)))
-	#For showing images directly use the code below
-	# self.response.out.write("<b>Origonal Size   :   </b>  <img src='%s' alt='Origonal Size'> <br><b>Object in 150 Size(for Images)   :   </b>  <img src='%s' alt='Object in 150 Size(for Images)'><br> <b>Object in 80 Size(for Images)   :   </b>  <img src='%s' alt='Object in 80 Size(for Images)'><br><button onclick='goBack()'>Upload Another File</button> " % (images.get_serving_url(resource),
-
 	self.response.out.write("</html></body>")
 
 app = webapp2.WSGIApplication([('/', MainHandler),
